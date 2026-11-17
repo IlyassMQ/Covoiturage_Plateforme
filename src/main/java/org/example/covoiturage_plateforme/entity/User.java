@@ -1,0 +1,45 @@
+package org.example.covoiturage_plateforme.Entity;
+
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
+
+
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Getter
+@Setter
+@NoArgsConstructor
+public abstract class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
+    private boolean is_Active = true;
+
+    public User(String firstName, String email, String lastName, String phone) {
+        this.firstName = firstName;
+        this.email = email;
+        this.lastName = lastName;
+        this.phone = phone;
+    }
+}
