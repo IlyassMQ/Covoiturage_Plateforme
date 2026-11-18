@@ -40,15 +40,15 @@ public class UserController {
     }
 
 
-    @GetMapping("/email/{email}")
+    @GetMapping("/email")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponse getUserByEmail(@PathVariable("email") String email){
+    public UserResponse getUserByEmail(@RequestParam("email") String email){
         return userService.getUserByEmail(email);
     }
 
-    @GetMapping("/lastname/{lastname}")
+    @GetMapping("/lastname")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserResponse> getUserByLastName(@PathVariable("lastname") String lastName){
+    public List<UserResponse> getUserByLastName(@RequestParam("lastname") String lastName){
             return userService.getUserByLastName(lastName);
     }
 
@@ -69,5 +69,12 @@ public class UserController {
     public UserResponse deleteUser(@PathVariable("id") UUID id){
         return userService.deleteUser(id);
     }
+
+    @GetMapping("/me/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserResponse userProfil(@PathVariable("userId")UUID userId){
+        return userService.userProfil(userId);
+    }
+
 
 }
