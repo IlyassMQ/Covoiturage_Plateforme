@@ -34,9 +34,9 @@ public abstract class User {
     private String phone;
 
     @Column(nullable = false)
-    private boolean is_Active = true;
+    private boolean active = true;
 
-    public User(String firstName, String email, String lastName, String phone) {
+    public User(String firstName, String lastName,String email,  String phone) {
         this.firstName = firstName;
         this.email = email;
         this.lastName = lastName;

@@ -20,7 +20,7 @@ public class Passenger extends User{
     @OneToMany(mappedBy = "passenger")
     private List<Reservation> reservations = new ArrayList<>();
 
-    public Passenger(String firstName, String email, String lastName, String phone) {
-        super(firstName, email, lastName, phone);
+    public Passenger(String firstName, String lastName,String email, String phone) {
+        super(firstName, lastName,email, phone);
     }
 }
