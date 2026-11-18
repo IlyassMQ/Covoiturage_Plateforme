@@ -11,15 +11,15 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,UUID> {
-    Optional<User> findByEmailAnd_ActiveTrue(String email);
+    Optional<User> findByEmailAndActiveTrue(String email);
 
     boolean existsByEmail(String email);
 
     boolean existsByEmailAndIdNot(String email, UUID id);
 
-    List<User> findAllByLastNameAnd_ActiveTrue(String lastName);
+    List<User> findAllByLastNameAndActiveTrue(String lastName);
 
-    List<User> findAllBy_ActiveTrue();
+    List<User> findAllByActiveTrue();
 
-   Optional<User> findByIdAnd_ActiveTrue(UUID userId);
+   Optional<User> findByIdAndActiveTrue(UUID userId);
 }
