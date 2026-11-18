@@ -27,6 +27,6 @@ public class UserUpdateRequest {
     @Size(max = 10)
     private String phone ;
 
-    @NotBlank(message = "Licence number is required")
+
     private String licence_number;
 }

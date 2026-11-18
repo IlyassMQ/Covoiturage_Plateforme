@@ -27,7 +27,7 @@ public class UserCreateRequest {
     @Size(max = 10 ,min = 8)
     private String phone ;
 
-    @NotBlank(message = "Licence number is required")
+    
     private String licence_number;
 
 
