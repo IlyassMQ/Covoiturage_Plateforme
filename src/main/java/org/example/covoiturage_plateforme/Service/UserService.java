@@ -77,7 +77,7 @@ public class UserService {
 
 
     public UserResponse getUserByEmail(String email){
-            User user = userRepository.findByEmailAnd_ActiveTrue(email)
+            User user = userRepository.findByEmailAndActiveTrue(email)
                     .orElseThrow(UserNotFoundException::new);
             return userMapper.toResponse(user);
 
@@ -85,7 +85,7 @@ public class UserService {
 
     public List<UserResponse> getUserByLastName(String lastName){
 
-            List<User> userList = userRepository.findAllByLastNameAnd_ActiveTrue(lastName);
+            List<User> userList = userRepository.findAllByLastNameAndActiveTrue(lastName);
              List<UserResponse> responseList = userList.stream().map(userMapper::toResponse).toList();
 
 
@@ -93,7 +93,7 @@ public class UserService {
     }
 
     public List<UserResponse> getAllUsers(){
-            List<User> userList = userRepository.findAllBy_ActiveTrue();
+            List<User> userList = userRepository.findAllByActiveTrue();
 
            List<UserResponse> responseList =  userList.stream().map(userMapper::toResponse).toList();
 
@@ -103,7 +103,7 @@ public class UserService {
 
     @Transactional
     public UserResponse updateUser(UserUpdateRequest request,UUID userId){
-            User user = userRepository.findByIdAnd_ActiveTrue(userId)
+            User user = userRepository.findByIdAndActiveTrue(userId)
                     .orElseThrow(UserNotFoundException::new);
 
 
@@ -131,15 +131,22 @@ public class UserService {
 
     @Transactional
     public UserResponse deleteUser(UUID id){
-            User user = userRepository.findByIdAnd_ActiveTrue(id).
+            User user = userRepository.findByIdAndActiveTrue(id).
                     orElseThrow(UserNotFoundException::new);
 
-            user.set_Active(false);
+            user.setActive(false);
             userRepository.save(user);
 
             return userMapper.toResponse(user);
 
 
+    }
+
+    public UserResponse userProfil(UUID userId){
+            User user = userRepository.findById(userId).
+                    orElseThrow(UserNotFoundException::new);
+
+            return userMapper.toResponse(user);
     }
 
 }
