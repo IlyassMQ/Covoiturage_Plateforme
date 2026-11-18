@@ -2,10 +2,12 @@ package org.example.covoiturage_plateforme.Dto.Response;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Getter
+@Setter
 public class UserResponse {
 
 
@@ -19,8 +21,8 @@ public class UserResponse {
 
     private String phone ;
 
-    private boolean is_Active;
-    
-    private String licence_number;
+    private boolean active;
+
+    private String license_number;
 
 }
