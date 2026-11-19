@@ -95,21 +95,14 @@ public class VehicleService {
             throw new IllegalArgumentException("You are not authorized to update this vehicle");
         }
 
-            vehicle.setBrand(request.getBrand());
-            vehicle.setCapacity(request.getCapacity());
-            vehicle.setColor(request.getColor());
-            vehicle.setModel(request.getModel());
-
-            if (!(vehicle.getLicensePlate().equals(request.getLicensePlate()))){
+        if (!(vehicle.getLicensePlate().equals(request.getLicensePlate()))){
                 if (vehicleRepository.existsByLicensePlate(request.getLicensePlate())) {
                     throw new VehicleAlreadyExistException();
                 }
-                vehicle.setLicensePlate(request.getLicensePlate());
-            }
+        }
 
-            Vehicle updatedVehicle = vehicleRepository.save(vehicle);
-
-           return vehicleMapper.toResponse(updatedVehicle);
+        vehicleMapper.updateVehicle(request, vehicle);
+           return vehicleMapper.toResponse(vehicle);
 
     }
 
