@@ -29,7 +29,7 @@ public class Driver extends User {
     private List<Trip> trips = new ArrayList<>();
 
     public Driver(String firstName,String lastName ,String email, String phone,String licenseNumber) {
-        super(firstName, email, lastName, phone);
+        super(firstName, lastName,email, phone);
         this.licenseNumber = licenseNumber;
     }
 }
