@@ -18,19 +18,17 @@ public class TripSearchRequest {
     @NotBlank
     private String arrivalCity;
 
-    @NotNull
-    @FutureOrPresent
+
     private LocalDate departureDate;
 
-    @NotNull
-    @Future
+
     private LocalDate arrivalDate;
 
-    @NotNull
+
     @Positive
     private BigDecimal maxPrice;
 
-    @NotNull
+    
     @Min(1)
     private Integer numberOfSeats;
 }

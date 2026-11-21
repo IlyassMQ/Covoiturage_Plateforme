@@ -42,4 +42,10 @@ public class TripController {
         tripService.cancelTrip(tripId, driverId);
     }
 
+    @PutMapping("complete/{driverId}/{tripId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void completeTrip(@PathVariable UUID driverId, @PathVariable UUID tripId){
+        tripService.completeTrip(tripId,driverId);
+    }
+
 }

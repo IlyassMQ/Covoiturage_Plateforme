@@ -185,6 +185,30 @@ public class TripService {
         return searchedTrips;
     }
 
+
+    @Transactional
+    public void completeTrip(UUID tripId, UUID driverId) {
+
+        Trip trip = tripRepository.findById(tripId)
+                .orElseThrow(TripNotFoundException::new);
+
+        if (!trip.getDriver().getId().equals(driverId)) {
+            throw new IllegalArgumentException("Only the Driver can complete the trip");
+        }
+
+        if (trip.getStatus() == TripStatus.CANCELED ||
+                trip.getStatus() == TripStatus.COMPLETED) {
+            throw new BusinessRuleException("This trip cannot be completed");
+        }
+
+
+        if (trip.getDepartureDateTime().isAfter(LocalDateTime.now())) {
+            throw new BusinessRuleException("The trip cannot be completed before its departure time");
+        }
+
+        trip.setStatus(TripStatus.COMPLETED);
+    }
+
     @Transactional
     public void cancelTrip(UUID tripId, UUID driverId) {
 
